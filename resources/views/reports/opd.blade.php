@@ -5,7 +5,7 @@
 @section('content')
 <div class="sh">
   <div>
-    <div class="sh-eye">Reports → OPD</div>
+    <div class="sh-eye">Reports / OPD</div>
     <div class="sh-title">OPD Queue Analytics</div>
   </div>
   <div style="display:flex;gap:8px;align-items:center">
@@ -23,7 +23,7 @@
       </div>
     </form>
     <div style="display:flex;align-items:flex-end">
-      <a href="{{ route('reports.index') }}" class="btn btn-ghost btn-sm">← Back</a>
+      <a href="{{ route('reports.index') }}" class="btn btn-ghost btn-sm">Back</a>
     </div>
   </div>
 </div>

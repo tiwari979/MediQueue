@@ -20,7 +20,7 @@
     <span class="card-title">Stock Register</span>
     <form method="GET" style="display:flex;gap:8px">
       <div class="search-wrap" style="min-width:200px">
-        <span>🔍</span><input name="search" value="{{ $search }}" placeholder="Search item...">
+        <span>Search</span><input name="search" value="{{ $search }}" placeholder="Search item...">
       </div>
       <select name="category" class="form-ctrl" style="width:160px;padding:6px 10px;font-size:12px" onchange="this.form.submit()">
         <option value="">All Categories</option>
@@ -81,7 +81,7 @@
       </div>
     </div>
   @empty
-    <div class="empty"><div class="empty-ico">💊</div><div class="empty-txt">No inventory items found</div></div>
+    <div class="empty"><div class="empty-ico"></div><div class="empty-txt">No inventory items found</div></div>
   @endforelse
  
   <div style="padding:1rem 1.5rem">{{ $items->links() }}</div>

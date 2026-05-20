@@ -5,7 +5,7 @@
 @section('content')
 <div class="sh">
   <div><div class="sh-eye">OPD Module</div><div class="sh-title">Issue New Token</div></div>
-  <a href="{{ route('opd.index') }}" class="btn btn-ghost">← Back</a>
+  <a href="{{ route('opd.index') }}" class="btn btn-ghost">Back</a>
 </div>
  
 <div style="max-width:640px">
@@ -17,7 +17,7 @@
         <div class="form-grp">
           <label class="form-lbl">Patient *</label>
           <select name="patient_id" class="form-ctrl" required>
-            <option value="">— Select Patient —</option>
+            <option value="">Select Patient</option>
             @foreach($patients as $p)
               <option value="{{ $p->id }}" {{ old('patient_id') == $p->id ? 'selected' : '' }}>
                 {{ $p->name }} ({{ $p->patient_id }})
@@ -25,14 +25,14 @@
             @endforeach
           </select>
           @error('patient_id')<div class="form-err">{{ $message }}</div>@enderror
-          <div class="form-hint">Patient must be registered first. <a href="{{ route('patients.create') }}" style="color:var(--teal2)">Register new →</a></div>
+          <div class="form-hint">Patient must be registered first. <a href="{{ route('patients.create') }}" style="color:var(--teal2)">Register new</a></div>
         </div>
  
         <div class="form-grid">
           <div class="form-grp">
             <label class="form-lbl">Department *</label>
             <select name="department" class="form-ctrl" required>
-              <option value="">— Select —</option>
+              <option value="">Select</option>
               @foreach($departments as $d)
                 <option value="{{ $d }}" {{ old('department') === $d ? 'selected' : '' }}>{{ $d }}</option>
               @endforeach
@@ -60,7 +60,7 @@
         </div>
  
         <div style="display:flex;gap:8px">
-          <button type="submit" class="btn btn-primary">Issue Token →</button>
+          <button type="submit" class="btn btn-primary">Issue Token</button>
           <a href="{{ route('opd.index') }}" class="btn btn-ghost">Cancel</a>
         </div>
       </form>

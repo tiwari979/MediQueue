@@ -8,7 +8,7 @@
   <div style="display:flex;gap:8px">
     <form method="GET">
       <div class="search-wrap" style="min-width:240px">
-        <span>🔍</span>
+        <span>Search</span>
         <input name="search" value="{{ $search }}" placeholder="Search name, ID, phone...">
       </div>
     </form>
@@ -44,10 +44,10 @@
           <td class="td-m">{{ $p->phone }}</td>
           <td class="td-m">{{ $p->created_at->format('d M Y') }}</td>
           <td>{!! $statusBadge !!}</td>
-          <td><a href="{{ route('patients.show', $p->id) }}" class="btn btn-ghost btn-sm">View →</a></td>
+          <td><a href="{{ route('patients.show', $p->id) }}" class="btn btn-ghost btn-sm">View</a></td>
         </tr>
       @empty
-        <tr><td colspan="8"><div class="empty"><div class="empty-ico">👤</div><div class="empty-txt">No patients found</div></div></td></tr>
+        <tr><td colspan="8"><div class="empty"><div class="empty-ico"></div><div class="empty-txt">No patients found</div></div></td></tr>
       @endforelse
     </tbody>
   </table>

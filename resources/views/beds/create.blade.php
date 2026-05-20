@@ -5,7 +5,7 @@
 @section('content')
 <div class="sh">
   <div><div class="sh-eye">Bed Module</div><div class="sh-title">Add New Bed</div></div>
-  <a href="{{ route('beds.index') }}" class="btn btn-ghost">← Back</a>
+  <a href="{{ route('beds.index') }}" class="btn btn-ghost">Back</a>
 </div>
 
 <div style="max-width:520px">
@@ -25,7 +25,7 @@
           <div class="form-grp">
             <label class="form-lbl">Ward *</label>
             <select name="ward" class="form-ctrl" required>
-              <option value="">— Select Ward —</option>
+              <option value="">Select Ward</option>
               @foreach($wards as $w)
                 <option value="{{ $w }}" {{ old('ward') === $w ? 'selected' : '' }}>{{ $w }}</option>
               @endforeach
@@ -43,7 +43,7 @@
           @error('bed_type')<div class="form-err">{{ $message }}</div>@enderror
         </div>
         <div style="display:flex;gap:8px;margin-top:.5rem">
-          <button type="submit" class="btn btn-primary">Add Bed →</button>
+          <button type="submit" class="btn btn-primary">Add Bed</button>
           <a href="{{ route('beds.index') }}" class="btn btn-ghost">Cancel</a>
         </div>
       </form>

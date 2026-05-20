@@ -6,10 +6,10 @@
 <div class="sh">
   <div>
     <div class="sh-eye">Patient Module</div>
-    <div class="sh-title">Edit — {{ $patient->name }}</div>
+    <div class="sh-title">Edit - {{ $patient->name }}</div>
     <div class="sh-desc">{{ $patient->patient_id }}</div>
   </div>
-  <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-ghost">← Back to Profile</a>
+  <a href="{{ route('patients.show', $patient->id) }}" class="btn btn-ghost">Back to Profile</a>
 </div>
 
 <div style="max-width:720px">

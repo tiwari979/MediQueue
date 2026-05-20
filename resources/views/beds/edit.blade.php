@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="sh">
-  <div><div class="sh-eye">Bed Module</div><div class="sh-title">Edit Bed — {{ $bed->bed_number }}</div></div>
-  <a href="{{ route('beds.index') }}" class="btn btn-ghost">← Back</a>
+  <div><div class="sh-eye">Bed Module</div><div class="sh-title">Edit Bed - {{ $bed->bed_number }}</div></div>
+  <a href="{{ route('beds.index') }}" class="btn btn-ghost">Back</a>
 </div>
 
 <div style="max-width:520px">
@@ -50,7 +50,7 @@
           </select>
           @if($bed->status === 'occupied')
             <input type="hidden" name="status" value="occupied">
-            <div class="form-hint" style="color:var(--amber)">⚠️ Cannot change status of an occupied bed. Discharge patient first.</div>
+            <div class="form-hint" style="color:var(--amber)">Cannot change status of an occupied bed. Discharge patient first.</div>
           @endif
           @error('status')<div class="form-err">{{ $message }}</div>@enderror
         </div>

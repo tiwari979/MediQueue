@@ -38,9 +38,16 @@ class PatientController extends Controller
     }
 
     /** GET /patients/create */
-    public function create()
+    public function create(Request $request)
     {
-        return view('patients.create');
+        $selectedBed = null;
+        if ($request->filled('bed')) {
+            $selectedBed = Bed::where('status', 'available')->find($request->bed);
+        }
+
+        $doctors = \App\Models\User::where('role', 'doctor')->orderBy('name')->get();
+
+        return view('patients.create', compact('selectedBed', 'doctors'));
     }
 
     /** POST /patients/store */
@@ -56,6 +63,9 @@ class PatientController extends Controller
             'address'    => 'nullable|string|max:300',
             'emergency_contact_name'  => 'nullable|string|max:100',
             'emergency_contact_phone' => 'nullable|digits_between:10,12',
+            'bed_id'     => 'nullable|exists:beds,id',
+            'doctor'     => 'nullable|required_with:bed_id|string|max:100',
+            'diagnosis'  => 'nullable|required_with:bed_id|string|max:300',
         ], [
             'name.required'     => 'Patient name is required.',
             'dob.required'      => 'Date of birth is required.',
@@ -64,9 +74,19 @@ class PatientController extends Controller
             'phone.digits_between' => 'Phone must be 10–12 digits.',
             'email.unique'      => 'This email is already registered.',
             'blood_group.required' => 'Blood group is required.',
+            'doctor.required_with' => 'Attending doctor is required when allocating a bed.',
+            'diagnosis.required_with' => 'Diagnosis is required when allocating a bed.',
         ]);
 
         if ($validator->fails()) return back()->withErrors($validator)->withInput();
+
+        $selectedBed = null;
+        if ($request->filled('bed_id')) {
+            $selectedBed = Bed::where('status', 'available')->find($request->bed_id);
+            if (!$selectedBed) {
+                return back()->withInput()->with('error', 'Selected bed is no longer available. Please choose another.');
+            }
+        }
 
         // Auto-generate patient ID: P-YYYY-XXXXX
         $lastId = Patient::whereYear('created_at', now()->year)->max('id') ?? 0;
@@ -86,6 +106,22 @@ class PatientController extends Controller
             'registered_by'           => Auth::id(),
         ]);
 
+        if ($selectedBed) {
+                Admission::create([
+                    'patient_id'  => $patient->id,
+                    'bed_id'      => $selectedBed->id,
+                    'diagnosis'   => $request->diagnosis,
+                    'doctor'      => $request->doctor,
+                    'admitted_at' => now(),
+                    'admitted_by' => Auth::id(),
+                    'status'      => 'admitted',
+                ]);
+                $selectedBed->update(['status' => 'occupied']);
+
+                return redirect()->route('patients.show', $patient->id)
+                    ->with('success', "Patient registered and admitted to bed {$selectedBed->bed_number}.");
+        }
+
         return redirect()->route('patients.show', $patient->id)
             ->with('success', "Patient registered successfully. ID: $patientId");
     }
@@ -95,7 +131,11 @@ class PatientController extends Controller
     {
         $patient    = Patient::with(['admissions.bed', 'opdTokens'])->findOrFail($id);
         $availBeds  = Bed::where('status', 'available')->orderBy('ward')->get();
-        return view('patients.show', compact('patient', 'availBeds'));
+        $bedMap     = Bed::with('currentAdmission.patient')->orderBy('ward')->orderBy('bed_number')->get()->groupBy('ward');
+        
+        $doctors = \App\Models\User::where('role', 'doctor')->orderBy('name')->get();
+        
+        return view('patients.show', compact('patient', 'availBeds', 'bedMap', 'doctors'));
     }
 
     /** GET /patients/{id}/edit */

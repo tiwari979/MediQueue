@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Bed;
 use App\Models\Admission;
+use App\Models\Patient;
+use App\Models\User;
 
 class BedController extends Controller
 {
@@ -25,6 +27,10 @@ class BedController extends Controller
 
         $beds = $query->orderBy('ward')->orderBy('bed_number')->paginate(20);
 
+        $mapQuery = Bed::with('currentAdmission.patient');
+        if ($ward) $mapQuery->where('ward', $ward);
+        $bedMap = $mapQuery->orderBy('ward')->orderBy('bed_number')->get()->groupBy('ward');
+
         $wardSummary = Bed::selectRaw('ward,
             COUNT(*) as total,
             SUM(CASE WHEN status="available" THEN 1 ELSE 0 END) as available,
@@ -32,8 +38,17 @@ class BedController extends Controller
             SUM(CASE WHEN status="reserved"  THEN 1 ELSE 0 END) as reserved')
             ->groupBy('ward')->get()->keyBy('ward');
 
+        $existingPatients = Patient::whereDoesntHave('admissions', fn($q) => $q->where('status', 'admitted'))
+            ->orderBy('name')
+            ->get(['id', 'patient_id', 'name', 'dob', 'created_at']);
+
+        $doctors = User::where('role', 'doctor')
+            ->where('is_active', true)
+            ->orderBy('name')
+            ->get(['id', 'name', 'department']);
+
         $wards = $this->wards;
-        return view('beds.index', compact('beds', 'wardSummary', 'wards', 'ward', 'status'));
+        return view('beds.index', compact('beds', 'bedMap', 'wardSummary', 'wards', 'ward', 'status', 'existingPatients', 'doctors'));
     }
 
     /** GET /beds/create */

@@ -6,12 +6,12 @@
 <div class="sh">
   <div>
     <div class="sh-eye">Inventory Module</div>
-    <div class="sh-title">Edit — {{ $item->name }}</div>
+    <div class="sh-title">Edit - {{ $item->name }}</div>
     <div class="sh-desc">{{ $item->category }} · {{ $item->unit }}</div>
   </div>
   <div style="display:flex;gap:8px">
-    <button class="btn btn-primary" onclick="openModal('modal-dispense')">💊 Dispense</button>
-    <a href="{{ route('inventory.index') }}" class="btn btn-ghost">← Back</a>
+    <button class="btn btn-primary" onclick="openModal('modal-dispense')">Dispense</button>
+    <a href="{{ route('inventory.index') }}" class="btn btn-ghost">Back</a>
   </div>
 </div>
 
@@ -57,7 +57,7 @@
 
         <div class="form-grid">
           <div class="form-grp">
-            <label class="form-lbl">Unit Price (₹) *</label>
+          <label class="form-lbl">Unit Price (Rs.) *</label>
             <input name="unit_price" type="number" step="0.01" min="0" class="form-ctrl"
                    value="{{ old('unit_price', $item->unit_price) }}" required>
             @error('unit_price')<div class="form-err">{{ $message }}</div>@enderror
@@ -118,7 +118,7 @@
         @foreach([
           ['Category',     $item->category],
           ['Unit',         $item->unit],
-          ['Unit Price',   '₹ ' . number_format($item->unit_price, 2)],
+          ['Unit Price',   'Rs. ' . number_format($item->unit_price, 2)],
           ['Batch No.',    $item->batch_number ?? '—'],
           ['Supplier',     $item->supplier ?? '—'],
           ['Expiry',       $item->expiry_date ? $item->expiry_date->format('d M Y') : 'N/A'],
@@ -131,12 +131,12 @@
 
         @if($item->isExpiringSoon())
           <div style="margin-top:1rem;padding:.75rem;background:var(--amber-bg);border:1px solid rgba(244,163,0,.2);border-radius:var(--radius);font-size:12px;color:var(--amber)">
-            ⚠️ This item expires within 30 days. Plan for disposal or return.
+            This item expires within 30 days. Plan for disposal or return.
           </div>
         @endif
         @if($item->isLowStock())
           <div style="margin-top:.5rem;padding:.75rem;background:var(--red-bg);border:1px solid rgba(232,59,59,.2);border-radius:var(--radius);font-size:12px;color:var(--red)">
-            🔴 Stock below reorder level. Raise purchase order immediately.
+            Stock below reorder level. Raise purchase order immediately.
           </div>
         @endif
       </div>
@@ -148,7 +148,7 @@
       @forelse($item->logs->take(5) as $log)
         <div style="display:flex;gap:10px;padding:10px 1.25rem;border-bottom:1px solid rgba(255,255,255,.03);font-size:12.5px">
           <span style="font-size:16px">
-            {{ match($log->action) { 'dispensed'=>'💊', 'restocked'=>'📦', 'added'=>'✅', default=>'📋' } }}
+            {{ match($log->action) { 'dispensed'=>'Dispensed', 'restocked'=>'Restocked', 'added'=>'Added', default=>'Log' } }}
           </span>
           <div style="flex:1">
             <div style="color:#fff;font-weight:500;text-transform:capitalize">{{ $log->action }}</div>
@@ -190,7 +190,7 @@
       </div>
       <div class="modal-foot">
         <button type="button" class="btn btn-ghost" onclick="closeModal('modal-dispense')">Cancel</button>
-        <button type="submit" class="btn btn-primary">Confirm Dispense →</button>
+        <button type="submit" class="btn btn-primary">Confirm Dispense</button>
       </div>
     </form>
   </div>

@@ -38,8 +38,8 @@
   {{-- OPD Department Load --}}
   <div class="card">
     <div class="card-head">
-      <span class="card-title">🔄 OPD Department Load</span>
-      <a href="{{ route('opd.index') }}" class="btn btn-ghost btn-sm">View Queue →</a>
+      <span class="card-title">OPD Department Load</span>
+      <a href="{{ route('opd.index') }}" class="btn btn-ghost btn-sm">View Queue</a>
     </div>
     <div>
       @forelse($opdByDept as $row)
@@ -57,7 +57,7 @@
           <div style="font-size:11px;color:var(--text2);width:55px;text-align:right">~{{ number_format($row->avg_wait) }}m</div>
         </div>
       @empty
-        <div class="empty"><div class="empty-ico">✅</div><div class="empty-txt">No patients currently waiting</div></div>
+        <div class="empty"><div class="empty-ico"></div><div class="empty-txt">No patients currently waiting</div></div>
       @endforelse
     </div>
   </div>
@@ -65,8 +65,8 @@
   {{-- Bed Occupancy --}}
   <div class="card">
     <div class="card-head">
-      <span class="card-title">🛏️ Ward Bed Occupancy</span>
-      <a href="{{ route('beds.index') }}" class="btn btn-ghost btn-sm">View Beds →</a>
+      <span class="card-title">Ward Bed Occupancy</span>
+      <a href="{{ route('beds.index') }}" class="btn btn-ghost btn-sm">View Beds</a>
     </div>
     <div style="padding:1.25rem">
       @foreach($bedsByWard as $ward)

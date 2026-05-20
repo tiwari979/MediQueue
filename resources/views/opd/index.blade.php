@@ -29,7 +29,7 @@
         </div>
         @if($summary)
           <div class="prog"><div class="prog-fill" style="width:{{ min(100,($count/20)*100) }}%;background:{{ $count >= 15 ? 'var(--red)' : ($count >= 8 ? 'var(--amber)' : 'var(--teal)') }}"></div></div>
-          <div style="font-size:11px;color:var(--text3);margin-top:5px">~{{ number_format($summary->avg_wait) }} min avg</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:5px">~{{ number_format($summary->avg_wait) }} min avg</div>
         @else
           <div style="font-size:11px;color:var(--text3)">No patients waiting</div>
         @endif
@@ -74,22 +74,22 @@
             <div style="display:flex;gap:6px">
               @if($t->status === 'waiting')
                 <form method="POST" action="{{ route('opd.callnext', $t->id) }}">
-                  @csrf <button class="btn btn-ghost btn-sm" type="submit">📢 Call</button>
+                  @csrf <button class="btn btn-ghost btn-sm" type="submit">Call</button>
                 </form>
               @elseif($t->status === 'in_consultation')
                 <form method="POST" action="{{ route('opd.complete', $t->id) }}">
-                  @csrf <button class="btn btn-primary btn-sm" type="submit">✓ Done</button>
+                  @csrf <button class="btn btn-primary btn-sm" type="submit">Done</button>
                 </form>
               @endif
               <form method="POST" action="{{ route('opd.destroy', $t->id) }}">
                 @csrf @method('DELETE')
-                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Cancel this token?')">✕</button>
+                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Cancel this token?')">Cancel</button>
               </form>
             </div>
           </td>
         </tr>
       @empty
-        <tr><td colspan="8"><div class="empty"><div class="empty-ico">📋</div><div class="empty-txt">No tokens found</div></div></td></tr>
+        <tr><td colspan="8"><div class="empty"><div class="empty-ico"></div><div class="empty-txt">No tokens found</div></div></td></tr>
       @endforelse
     </tbody>
   </table>

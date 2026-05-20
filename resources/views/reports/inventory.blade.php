@@ -5,10 +5,10 @@
 @section('content')
 <div class="sh">
   <div>
-    <div class="sh-eye">Reports → Inventory</div>
+    <div class="sh-eye">Reports / Inventory</div>
     <div class="sh-title">Stock Usage & Dispensing Log</div>
   </div>
-  <a href="{{ route('reports.index') }}" class="btn btn-ghost">← Back</a>
+  <a href="{{ route('reports.index') }}" class="btn btn-ghost">Back</a>
 </div>
 
 <div class="two-col">
@@ -53,7 +53,7 @@
             </td>
           </tr>
         @empty
-          <tr><td colspan="4"><div class="empty" style="padding:1.5rem"><div class="empty-txt">All items above reorder level ✅</div></div></td></tr>
+          <tr><td colspan="4"><div class="empty" style="padding:1.5rem"><div class="empty-txt">All items above reorder level</div></div></td></tr>
         @endforelse
       </tbody>
     </table>

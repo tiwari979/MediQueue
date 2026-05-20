@@ -42,26 +42,26 @@
 <div class="three-col">
   <a href="{{ route('reports.opd') }}" class="card" style="margin-bottom:0;text-decoration:none;display:block;transition:border-color .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
     <div style="padding:1.5rem;text-align:center">
-      <div style="font-size:36px;margin-bottom:1rem">🔄</div>
+      <div style="font-size:12px;font-weight:800;color:var(--green-dark);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Queue</div>
       <div style="font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:6px">OPD Queue Report</div>
       <div style="font-size:12.5px;color:var(--text2);line-height:1.5">Daily token analysis, department-wise footfall, average wait times and queue efficiency metrics.</div>
-      <div style="margin-top:1.25rem;font-size:12px;color:var(--teal2);font-weight:500">View Report →</div>
+      <div style="margin-top:1.25rem;font-size:12px;color:var(--green-dark);font-weight:800">View Report</div>
     </div>
   </a>
   <a href="{{ route('reports.beds') }}" class="card" style="margin-bottom:0;text-decoration:none;display:block;transition:border-color .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
     <div style="padding:1.5rem;text-align:center">
-      <div style="font-size:36px;margin-bottom:1rem">🛏️</div>
+      <div style="font-size:12px;font-weight:800;color:var(--green-dark);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Beds</div>
       <div style="font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:6px">Bed & Admission Report</div>
       <div style="font-size:12.5px;color:var(--text2);line-height:1.5">Ward occupancy rates, admission history, length of stay analysis, and bed turnover statistics.</div>
-      <div style="margin-top:1.25rem;font-size:12px;color:var(--teal2);font-weight:500">View Report →</div>
+      <div style="margin-top:1.25rem;font-size:12px;color:var(--green-dark);font-weight:800">View Report</div>
     </div>
   </a>
   <a href="{{ route('reports.inventory') }}" class="card" style="margin-bottom:0;text-decoration:none;display:block;transition:border-color .2s" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'">
     <div style="padding:1.5rem;text-align:center">
-      <div style="font-size:36px;margin-bottom:1rem">💊</div>
+      <div style="font-size:12px;font-weight:800;color:var(--green-dark);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Stock</div>
       <div style="font-family:'Crimson Pro',serif;font-size:1.2rem;font-weight:600;color:#fff;margin-bottom:6px">Inventory Report</div>
       <div style="font-size:12.5px;color:var(--text2);line-height:1.5">Dispensing logs, category-wise usage analysis, low stock alerts, and expiry tracking.</div>
-      <div style="margin-top:1.25rem;font-size:12px;color:var(--teal2);font-weight:500">View Report →</div>
+      <div style="margin-top:1.25rem;font-size:12px;color:var(--green-dark);font-weight:800">View Report</div>
     </div>
   </a>
 </div>

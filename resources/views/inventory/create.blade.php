@@ -8,7 +8,7 @@
     <div class="sh-eye">Inventory Module</div>
     <div class="sh-title">Add New Item</div>
   </div>
-  <a href="{{ route('inventory.index') }}" class="btn btn-ghost">← Back</a>
+  <a href="{{ route('inventory.index') }}" class="btn btn-ghost">Back</a>
 </div>
 
 <div style="max-width:680px">
@@ -29,7 +29,7 @@
           <div class="form-grp">
             <label class="form-lbl">Category *</label>
             <select name="category" class="form-ctrl" required>
-              <option value="">— Select Category —</option>
+              <option value="">Select Category</option>
               @foreach($categories as $c)
                 <option value="{{ $c }}" {{ old('category') === $c ? 'selected' : '' }}>{{ $c }}</option>
               @endforeach
@@ -39,7 +39,7 @@
           <div class="form-grp">
             <label class="form-lbl">Unit *</label>
             <select name="unit" class="form-ctrl" required>
-              <option value="">— Select Unit —</option>
+              <option value="">Select Unit</option>
               @foreach($units as $u)
                 <option value="{{ $u }}" {{ old('unit') === $u ? 'selected' : '' }}>{{ $u }}</option>
               @endforeach
@@ -66,7 +66,7 @@
 
         <div class="form-grid">
           <div class="form-grp">
-            <label class="form-lbl">Unit Price (₹) *</label>
+            <label class="form-lbl">Unit Price (Rs.) *</label>
             <input name="unit_price" type="number" step="0.01" min="0" class="form-ctrl"
                    value="{{ old('unit_price', '0.00') }}" required>
             @error('unit_price')<div class="form-err">{{ $message }}</div>@enderror
@@ -93,7 +93,7 @@
         </div>
 
         <div style="display:flex;gap:8px;margin-top:.5rem">
-          <button type="submit" class="btn btn-primary">Add to Inventory →</button>
+          <button type="submit" class="btn btn-primary">Add to Inventory</button>
           <a href="{{ route('inventory.index') }}" class="btn btn-ghost">Cancel</a>
         </div>
       </form>

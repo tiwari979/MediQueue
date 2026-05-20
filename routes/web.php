@@ -16,9 +16,9 @@ use App\Http\Controllers\ReportController;
 |--------------------------------------------------------------------------
 */
 
-// Redirect root to login
+// Landing Page
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 // ─── Auth Routes (only for guests — logged out users) ────────────────────────

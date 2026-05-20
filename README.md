@@ -1,5 +1,5 @@
 # MediQueue HMS — Laravel MVC Project
-## INT221 MVC Programming · Hospital Queue, Bed Management & Inventory System
+## MVC Programming · Hospital Queue, Bed Management & Inventory System
 
 ---
 
